@@ -1,29 +1,7 @@
 ---
 import { Code } from 'astro:components'
 import { css } from 'styled-system/css'
-
-const snippet = `using BmSDK;
-using BmSDK.BmGame;
-
-[Script]
-public class DemoScript : Script
-{
-    public override void OnKeyDown(Keys key)
-    {
-        if (key != Keys.J)
-            return;
-
-        var player = Game.GetPlayerPawn();
-
-        // Spawn Joker in front of the player
-        Game.LoadPackage("FunFair");
-        var joker = new RPawnVillainThug(player.Location, player.Rotation);
-        joker.InitCharacter(RCharacter_Joker.StaticClass());
-
-        var dir = player.Rotation.ToDirection() with { Z = 0 };
-        joker.Move(dir * 100);
-    }
-}`
+import { codeSample } from '@/data/snippet'
 ---
 
 <div
@@ -61,7 +39,7 @@ public class DemoScript : Script
         fontFamily: 'var(--font-mono)',
       })}
     >
-      SpawnJoker.cs
+      {codeSample.filename}
     </span>
   </div>
 
@@ -75,6 +53,6 @@ public class DemoScript : Script
       '& code': { fontFamily: 'var(--font-mono)' },
     })}
   >
-    <Code code={snippet} lang="csharp" theme="github-dark" />
+    <Code code={codeSample.code} lang={codeSample.lang} theme="github-dark" />
   </div>
 </div>

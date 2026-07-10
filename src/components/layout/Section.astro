@@ -1,0 +1,25 @@
+---
+import { css, cx } from 'styled-system/css'
+import Container from './Container.astro'
+
+interface Props {
+  id?: string
+  bg?: 'canvas' | 'subtle'
+  class?: string
+}
+
+const { id, bg = 'canvas', class: className } = Astro.props
+
+const shell = css({
+  borderTop: '1px solid',
+  borderColor: 'border.subtle',
+  scrollMarginTop: '20',
+})
+const bgClass = bg === 'subtle' ? css({ bg: 'bg.subtle' }) : css({ bg: 'bg.canvas' })
+---
+
+<section id={id} class={cx(shell, bgClass)}>
+  <Container class={cx(css({ py: { base: '16', md: '24' } }), className)}>
+    <slot />
+  </Container>
+</section>

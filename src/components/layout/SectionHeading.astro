@@ -1,0 +1,31 @@
+---
+import { css, cx } from 'styled-system/css'
+
+// Wrap an accent word in <em> in the title to colour it (see gh.link below).
+interface Props {
+  title: string
+  subtitle?: string
+  subtitleClass?: string
+}
+
+const { title, subtitle, subtitleClass } = Astro.props
+---
+
+<h2
+  class={css({
+    fontSize: { base: '2xl', md: '4xl' },
+    fontWeight: 'bold',
+    letterSpacing: 'tight',
+    color: 'fg.default',
+    '& em': { color: 'gh.link', fontStyle: 'normal' },
+  })}
+  set:html={title}
+/>
+{
+  subtitle && (
+    <p
+      class={cx(css({ mt: '3', fontSize: 'md', color: 'fg.muted', maxW: '38rem' }), subtitleClass)}
+      set:html={subtitle}
+    />
+  )
+}

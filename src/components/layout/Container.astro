@@ -1,0 +1,13 @@
+---
+import { css, cx } from 'styled-system/css'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<div class={cx(css({ maxW: '1120px', mx: 'auto', px: { base: '4', md: '6' } }), className)}>
+  <slot />
+</div>

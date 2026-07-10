@@ -1,0 +1,43 @@
+---
+import { css, cx } from 'styled-system/css'
+import { site } from '@/data/site'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<span
+  class={cx(
+    css({
+      display: 'flex',
+      alignItems: 'center',
+      gap: '2.5',
+      fontWeight: 'bold',
+      fontSize: 'lg',
+      letterSpacing: 'tight',
+      color: 'fg.default',
+    }),
+    className
+  )}
+>
+  <span
+    class={css({
+      display: 'grid',
+      placeItems: 'center',
+      w: '7',
+      h: '7',
+      borderRadius: 'md',
+      bg: 'accent.default',
+      color: 'white',
+      fontSize: 'sm',
+      fontWeight: 'bold',
+      fontFamily: 'var(--font-mono)',
+    })}
+  >
+    {'{}'}
+  </span>
+  {site.name}
+</span>

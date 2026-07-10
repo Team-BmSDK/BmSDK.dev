@@ -1,44 +1,10 @@
 ---
 import { css } from 'styled-system/css'
+import Container from '@/components/layout/Container.astro'
+import BrandMark from '@/components/layout/BrandMark.astro'
 import GithubIcon from './GithubIcon.astro'
-
-const columns = [
-  {
-    title: 'Games',
-    links: [
-      { label: 'Arkham City', href: 'https://github.com/etkramer/BmSDK' },
-      { label: 'Arkham Knight', href: 'https://github.com/etkramer/BmSDK-AK' },
-    ],
-  },
-  {
-    title: 'Docs',
-    links: [
-      { label: 'Wiki', href: 'https://github.com/etkramer/BmSDK/wiki' },
-      {
-        label: 'Your first mod',
-        href: 'https://github.com/etkramer/BmSDK/wiki/Creating-your-first-mod',
-      },
-      {
-        label: 'Building BmSDK',
-        href: 'https://github.com/etkramer/BmSDK/wiki/Building-BmSDK',
-      },
-    ],
-  },
-  {
-    title: 'Project',
-    links: [
-      {
-        label: 'Releases',
-        href: 'https://github.com/etkramer/BmSDK/releases/latest',
-      },
-      { label: 'GitHub', href: 'https://github.com/etkramer/BmSDK' },
-      {
-        label: 'Licence',
-        href: 'https://github.com/etkramer/BmSDK/blob/master/LICENSE.md',
-      },
-    ],
-  },
-]
+import { footerColumns } from '@/data/navigation'
+import { links } from '@/data/site'
 ---
 
 <footer
@@ -48,11 +14,8 @@ const columns = [
     bg: 'bg.canvas',
   })}
 >
-  <div
+  <Container
     class={css({
-      maxW: '1120px',
-      mx: 'auto',
-      px: { base: '4', md: '6' },
       py: { base: '12', md: '16' },
       display: 'grid',
       gridTemplateColumns: { base: '1fr', sm: '1.5fr repeat(3, 1fr)' },
@@ -60,35 +23,9 @@ const columns = [
     })}
   >
     <div>
-      <div
-        class={css({
-          display: 'flex',
-          alignItems: 'center',
-          gap: '2.5',
-          fontWeight: 'bold',
-          fontSize: 'lg',
-          color: 'fg.default',
-        })}
-      >
-        <span
-          class={css({
-            display: 'grid',
-            placeItems: 'center',
-            w: '7',
-            h: '7',
-            borderRadius: 'md',
-            bg: 'accent.default',
-            color: 'white',
-            fontSize: 'sm',
-            fontFamily: 'var(--font-mono)',
-          })}
-        >
-          {'{}'}
-        </span>
-        BmSDK
-      </div>
+      <BrandMark />
       <a
-        href="https://github.com/etkramer/BmSDK"
+        href={links.city.repo}
         aria-label="BmSDK on GitHub"
         class={css({
           mt: '5',
@@ -103,15 +40,9 @@ const columns = [
     </div>
 
     {
-      columns.map((column) => (
+      footerColumns.map((column) => (
         <div>
-          <h4
-            class={css({
-              fontSize: 'sm',
-              fontWeight: 'semibold',
-              color: 'fg.default',
-            })}
-          >
+          <h4 class={css({ fontSize: 'sm', fontWeight: 'semibold', color: 'fg.default' })}>
             {column.title}
           </h4>
           <ul
@@ -142,19 +73,11 @@ const columns = [
         </div>
       ))
     }
-  </div>
+  </Container>
 
-  <div
-    class={css({
-      borderTop: '1px solid',
-      borderColor: 'border.subtle',
-    })}
-  >
-    <div
+  <div class={css({ borderTop: '1px solid', borderColor: 'border.subtle' })}>
+    <Container
       class={css({
-        maxW: '1120px',
-        mx: 'auto',
-        px: { base: '4', md: '6' },
         py: '6',
         display: 'flex',
         flexWrap: 'wrap',
@@ -166,9 +89,7 @@ const columns = [
       })}
     >
       <span>Released under the MIT licence.</span>
-      <span>
-        Not affiliated with Warner Bros. Games or Rocksteady Studios.
-      </span>
-    </div>
+      <span>Not affiliated with Warner Bros. Games or Rocksteady Studios.</span>
+    </Container>
   </div>
 </footer>

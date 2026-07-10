@@ -2,8 +2,6 @@ import { defineConfig } from '@pandacss/dev'
 import { createPreset } from '@park-ui/panda-preset'
 import blue from '@park-ui/panda-preset/colors/blue'
 import slate from '@park-ui/panda-preset/colors/slate'
-import { group } from './src/theme/recipes/group'
-import { absoluteCenter } from './src/theme/recipes/absolute-center'
 
 export default defineConfig({
   preflight: true,
@@ -27,11 +25,6 @@ export default defineConfig({
 
   theme: {
     extend: {
-      // Helper recipes not bundled in the Park UI preset
-      recipes: {
-        group,
-        absoluteCenter,
-      },
       semanticTokens: {
         colors: {
           // Retune the accent (blue) to GitHub's blue so solid buttons, the
