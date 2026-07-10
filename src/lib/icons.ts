@@ -10,3 +10,4 @@ export { default as ArrowUpRight } from 'lucide-react/dist/esm/icons/arrow-up-ri
 export { default as Braces } from 'lucide-react/dist/esm/icons/braces.mjs'
 export { default as Bug } from 'lucide-react/dist/esm/icons/bug.mjs'
 export { default as FileCode2 } from 'lucide-react/dist/esm/icons/file-code-2.mjs'
+export { default as Maximize2 } from 'lucide-react/dist/esm/icons/maximize-2.mjs'

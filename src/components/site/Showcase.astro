@@ -1,22 +1,23 @@
 ---
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import { css } from 'styled-system/css'
+import { Maximize2 } from '@/lib/icons'
 
+import aceNeon from '@/assets/screenshots/ace-neon.png'
 import akGcpd from '@/assets/screenshots/ak-gcpd.png'
-import acRooftop from '@/assets/screenshots/ac-rooftop.png'
 import modGiant from '@/assets/screenshots/mod-giant.png'
 import debugXray from '@/assets/screenshots/debug-xray.png'
+import devMaterial from '@/assets/screenshots/dev-material.png'
 import editorLights from '@/assets/screenshots/editor-lights.png'
-import aceChemicals from '@/assets/screenshots/ace-chemicals.png'
 
 // col/row spans map to a 4-column bento on desktop
 const tiles = [
-  { src: akGcpd, alt: 'Batman: Arkham Knight overlooking the GCPD', span: 'feature', pos: 'center', w: 1100 },
-  { src: acRooftop, alt: 'Batman on a rooftop over Gotham in Arkham City', span: 'wide', pos: 'center', w: 900 },
+  { src: aceNeon, alt: 'ACE Chemicals lit up at night in Arkham City', span: 'feature', pos: 'center', w: 1100 },
+  { src: akGcpd, alt: 'Batman: Arkham Knight overlooking the GCPD', span: 'wide', pos: 'center', w: 1000 },
   { src: modGiant, alt: 'An oversized enemy spawned in with BmSDK', span: 'tile', pos: 'center', w: 700 },
   { src: debugXray, alt: 'X-ray debug view of two players', span: 'tile', pos: 'center', w: 700 },
+  { src: devMaterial, alt: 'Enemies re-shaded with a custom material through BmSDK', span: 'wide', pos: 'center', w: 1000 },
   { src: editorLights, alt: 'Editing a light actor and seeing it update live in-game', span: 'wide', pos: 'top', w: 1000 },
-  { src: aceChemicals, alt: 'ACE Chemicals at night in Arkham City', span: 'wide', pos: 'center', w: 900 },
 ]
 
 const spanStyles = {
@@ -24,6 +25,14 @@ const spanStyles = {
   wide: css({ gridColumn: { md: 'span 2' } }),
   tile: css({ gridColumn: 'span 1' }),
 }
+
+// full-resolution sources for the lightbox
+const tilesWithFull = await Promise.all(
+  tiles.map(async (tile) => ({
+    ...tile,
+    full: (await getImage({ src: tile.src, width: 1920, format: 'webp', quality: 82 })).src,
+  }))
+)
 ---
 
 <section
@@ -35,7 +44,7 @@ const spanStyles = {
 >
   <div
     class={css({
-      maxW: '1080px',
+      maxW: '1120px',
       mx: 'auto',
       px: { base: '4', md: '6' },
       py: { base: '16', md: '24' },
@@ -67,11 +76,22 @@ const spanStyles = {
       })}
     >
       {
-        tiles.map((tile) => (
-          <figure
+        tilesWithFull.map((tile) => (
+          <button
+            type="button"
+            data-lightbox
+            data-full={tile.full}
+            aria-label={`Expand: ${tile.alt}`}
             class={`${spanStyles[tile.span]} ${css({
+              appearance: 'none',
+              p: '0',
+              font: 'inherit',
+              color: 'inherit',
+              textAlign: 'left',
+              cursor: 'zoom-in',
               position: 'relative',
-              m: '0',
+              display: 'block',
+              w: '100%',
               borderRadius: 'lg',
               overflow: 'hidden',
               border: '1px solid',
@@ -80,8 +100,14 @@ const spanStyles = {
               aspectRatio: { base: '16 / 10', md: 'auto' },
               transition: 'border-color 0.2s',
               _hover: {
-                borderColor: 'border.default',
                 '& img': { transform: 'scale(1.04)' },
+                '& [data-expand]': { opacity: '1' },
+              },
+              _focusVisible: {
+                outline: '2px solid',
+                outlineColor: 'border.outline',
+                outlineOffset: '2px',
+                '& [data-expand]': { opacity: '1' },
               },
             })}`}
           >
@@ -101,9 +127,84 @@ const spanStyles = {
               })}
               style={`object-position: ${tile.pos};`}
             />
-          </figure>
+            <span
+              data-expand
+              class={css({
+                position: 'absolute',
+                top: '2.5',
+                right: '2.5',
+                display: 'grid',
+                placeItems: 'center',
+                w: '7',
+                h: '7',
+                borderRadius: 'md',
+                color: 'white',
+                bg: 'rgba(1, 4, 9, 0.55)',
+                backdropFilter: 'blur(4px)',
+                opacity: '0',
+                transition: 'opacity 0.2s',
+                pointerEvents: 'none',
+              })}
+            >
+              <Maximize2 size={14} />
+            </span>
+          </button>
         ))
       }
     </div>
   </div>
+
+  <dialog
+    id="showcase-dialog"
+    class={css({
+      m: 'auto',
+      p: '0',
+      border: 'none',
+      bg: 'transparent',
+      maxW: '92vw',
+      maxH: '92vh',
+      '&::backdrop': {
+        bg: 'rgba(1, 4, 9, 0.82)',
+        backdropFilter: 'blur(4px)',
+      },
+    })}
+  >
+    <img
+      alt=""
+      class={css({
+        display: 'block',
+        maxW: '92vw',
+        maxH: '92vh',
+        w: 'auto',
+        h: 'auto',
+        borderRadius: 'lg',
+        border: '1px solid',
+        borderColor: 'border.default',
+      })}
+    />
+  </dialog>
 </section>
+
+<script>
+  const dialog = document.getElementById('showcase-dialog') as HTMLDialogElement | null
+  if (dialog) {
+    const img = dialog.querySelector('img')!
+    document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((el) => {
+      el.addEventListener('click', async () => {
+        const full = el.dataset.full
+        if (!full) return
+        img.src = full
+        img.alt = el.getAttribute('aria-label') ?? ''
+        // wait for the new image to decode so we never flash the previous one
+        try {
+          await img.decode()
+        } catch {}
+        if (!dialog.open) dialog.showModal()
+      })
+    })
+    // click on the backdrop (outside the image) closes; Escape is handled natively
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close()
+    })
+  }
+</script>
