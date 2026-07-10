@@ -25,6 +25,62 @@ export default defineConfig({
 
   theme: {
     extend: {
+      tokens: {
+        fonts: {
+          sans: {
+            value:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif",
+          },
+          mono: {
+            value:
+              "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace",
+          },
+        },
+      },
+      recipes: {
+        // Bordered surface used by game cards, the code panel, step rows, and
+        // showcase tiles. Padding/layout stays at the call site.
+        surface: {
+          className: 'surface',
+          base: { border: '1px solid', borderColor: 'border.default' },
+          variants: {
+            tone: {
+              canvas: { bg: 'bg.canvas' },
+              subtle: { bg: 'bg.subtle' },
+              inset: { bg: 'gh.inset' },
+            },
+            radius: {
+              lg: { borderRadius: 'lg' },
+              xl: { borderRadius: 'xl' },
+            },
+          },
+          defaultVariants: { tone: 'canvas', radius: 'xl' },
+        },
+        // Small centered square that holds a feature/game icon or the logo glyph.
+        iconTile: {
+          className: 'icon-tile',
+          base: { display: 'grid', placeItems: 'center', flexShrink: '0' },
+          variants: {
+            size: {
+              sm: { w: '7', h: '7' },
+              md: { w: '10', h: '10' },
+              lg: { w: '11', h: '11' },
+            },
+            tone: {
+              muted: { bg: 'gh.neutralMuted', color: 'gh.link', borderRadius: 'lg' },
+              outline: {
+                border: '1px solid',
+                borderColor: 'border.default',
+                bg: 'bg.subtle',
+                color: 'fg.default',
+                borderRadius: 'lg',
+              },
+              brand: { bg: 'accent.default', color: 'white', borderRadius: 'md' },
+            },
+          },
+          defaultVariants: { size: 'md', tone: 'muted' },
+        },
+      },
       semanticTokens: {
         colors: {
           // Retune the accent (blue) to GitHub's blue so solid buttons, the

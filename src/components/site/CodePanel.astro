@@ -1,18 +1,18 @@
 ---
 import { Code } from 'astro:components'
-import { css } from 'styled-system/css'
+import { css, cx } from 'styled-system/css'
+import { surface } from 'styled-system/recipes'
 import { codeSample } from '@/data/snippet'
 ---
 
 <div
-  class={css({
-    borderRadius: 'xl',
-    border: '1px solid',
-    borderColor: 'border.default',
-    bg: 'gh.inset',
-    overflow: 'hidden',
-    boxShadow: '0 16px 40px -12px rgba(1, 4, 9, 0.6)',
-  })}
+  class={cx(
+    surface({ tone: 'inset' }),
+    css({
+      overflow: 'hidden',
+      boxShadow: '0 16px 40px -12px rgba(1, 4, 9, 0.6)',
+    })
+  )}
 >
   <div
     class={css({
@@ -36,7 +36,7 @@ import { codeSample } from '@/data/snippet'
         ml: '2',
         fontSize: 'xs',
         color: 'fg.muted',
-        fontFamily: 'var(--font-mono)',
+        fontFamily: 'mono',
       })}
     >
       {codeSample.filename}
@@ -50,7 +50,7 @@ import { codeSample } from '@/data/snippet'
       fontSize: 'sm',
       lineHeight: 'relaxed',
       '& pre': { background: 'transparent !important', margin: '0' },
-      '& code': { fontFamily: 'var(--font-mono)' },
+      '& code': { fontFamily: 'mono' },
     })}
   >
     <Code code={codeSample.code} lang={codeSample.lang} theme="github-dark" />

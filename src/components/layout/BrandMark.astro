@@ -1,5 +1,6 @@
 ---
 import { css, cx } from 'styled-system/css'
+import { iconTile } from 'styled-system/recipes'
 import { site } from '@/data/site'
 
 interface Props {
@@ -24,18 +25,10 @@ const { class: className } = Astro.props
   )}
 >
   <span
-    class={css({
-      display: 'grid',
-      placeItems: 'center',
-      w: '7',
-      h: '7',
-      borderRadius: 'md',
-      bg: 'accent.default',
-      color: 'white',
-      fontSize: 'sm',
-      fontWeight: 'bold',
-      fontFamily: 'var(--font-mono)',
-    })}
+    class={cx(
+      iconTile({ size: 'sm', tone: 'brand' }),
+      css({ fontSize: 'sm', fontWeight: 'bold', fontFamily: 'mono' })
+    )}
   >
     {'{}'}
   </span>

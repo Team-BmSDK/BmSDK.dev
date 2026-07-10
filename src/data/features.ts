@@ -9,17 +9,17 @@ export interface Feature {
 export const features: Feature[] = [
   {
     icon: Braces,
-    title: 'The game&rsquo;s own API, in C#',
-    body: 'The SDK mirrors the engine&rsquo;s UnrealScript API, so you work with the game&rsquo;s real classes (pawns, characters, packages) as C# types, with full IntelliSense support.',
+    title: 'Full game API',
+    body: 'The SDK mirrors the engine&rsquo;s UnrealScript API, so you get to work with the game&rsquo;s built-in classes (pawns, characters, packages) through C# with full IntelliSense support.',
   },
   {
     icon: Bug,
-    title: 'Write and debug in Visual Studio',
-    body: 'Open the solution, write your script, and press F5. It&rsquo;s a normal C# project, so you can set breakpoints and debug it like anything else.',
+    title: 'Write/debug in Visual Studio',
+    body: 'BmSDK is intended to work natively with Visual Studio (and Visual Studio Code) - debugging works out-of-the-box with the provided solution files.',
   },
   {
     icon: FileCode2,
     title: 'Share mods as source',
-    body: 'Script mods are just .cs files. Players drop them into BmGame\\Scripts and they run, with no build step, packaging, or installers.',
+    body: 'Script mods are just .cs files. Players can drop them into BmGame\\Scripts and have them run out-of-the-box with no building/packaging needed.',
   },
 ]

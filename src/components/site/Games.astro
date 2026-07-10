@@ -1,16 +1,17 @@
 ---
-import { css } from 'styled-system/css'
+import { css, cx } from 'styled-system/css'
+import { surface, iconTile } from 'styled-system/recipes'
 import { Button } from '@/components/ui/button'
 import { Download } from '@/lib/icons'
 import Section from '@/components/layout/Section.astro'
 import SectionHeading from '@/components/layout/SectionHeading.astro'
-import GithubIcon from './GithubIcon.astro'
+import GithubIcon from '@/components/layout/GithubIcon.astro'
 import { games } from '@/data/games'
 ---
 
 <Section id="download" bg="subtle">
   <SectionHeading
-    title="Built for <em>both games</em>."
+    title="Built for <em>both games</em>"
     subtitle="BmSDK targets Batman: Arkham City and Arkham Knight, with the same scripting workflow for each. Pick your game and grab the latest release."
   />
 
@@ -25,29 +26,12 @@ import { games } from '@/data/games'
     {
       games.map((game) => (
         <div
-          class={css({
-            display: 'flex',
-            flexDirection: 'column',
-            p: '6',
-            borderRadius: 'xl',
-            border: '1px solid',
-            borderColor: 'border.default',
-            bg: 'bg.canvas',
-          })}
+          class={cx(
+            surface({ radius: 'xl' }),
+            css({ display: 'flex', flexDirection: 'column', p: '6' })
+          )}
         >
-          <div
-            class={css({
-              display: 'grid',
-              placeItems: 'center',
-              w: '11',
-              h: '11',
-              borderRadius: 'lg',
-              border: '1px solid',
-              borderColor: 'border.default',
-              bg: 'bg.subtle',
-              color: 'fg.default',
-            })}
-          >
+          <div class={iconTile({ size: 'lg', tone: 'outline' })}>
             <game.icon size={22} />
           </div>
 

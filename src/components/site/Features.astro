@@ -1,5 +1,6 @@
 ---
 import { css } from 'styled-system/css'
+import { iconTile } from 'styled-system/recipes'
 import Section from '@/components/layout/Section.astro'
 import SectionHeading from '@/components/layout/SectionHeading.astro'
 import { features } from '@/data/features'
@@ -7,8 +8,8 @@ import { features } from '@/data/features'
 
 <Section bg="subtle">
   <SectionHeading
-    title="A full modding SDK"
-    subtitle="Everything you need to build script mods, from the API down to how players install them."
+    title="Development"
+    subtitle="BmSDK aims to be a fully idiomatic C# SDK, with a strong focus on developer convenience/tooling."
   />
 
   <div
@@ -22,17 +23,7 @@ import { features } from '@/data/features'
     {
       features.map((feature) => (
         <div>
-          <div
-            class={css({
-              display: 'grid',
-              placeItems: 'center',
-              w: '10',
-              h: '10',
-              borderRadius: 'lg',
-              bg: 'gh.neutralMuted',
-              color: 'gh.link',
-            })}
-          >
+          <div class={iconTile({ size: 'md', tone: 'muted' })}>
             <feature.icon size={20} />
           </div>
           <h3

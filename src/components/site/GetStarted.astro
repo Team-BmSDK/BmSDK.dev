@@ -1,5 +1,6 @@
 ---
-import { css } from 'styled-system/css'
+import { css, cx } from 'styled-system/css'
+import { surface } from 'styled-system/recipes'
 import { Button } from '@/components/ui/button'
 import { Download, ArrowUpRight } from '@/lib/icons'
 import Section from '@/components/layout/Section.astro'
@@ -50,16 +51,10 @@ import { links } from '@/data/site'
     {
       steps.map((step, i) => (
         <li
-          class={css({
-            display: 'flex',
-            gap: '4',
-            alignItems: 'flex-start',
-            p: '4',
-            borderRadius: 'lg',
-            border: '1px solid',
-            borderColor: 'border.default',
-            bg: 'bg.canvas',
-          })}
+          class={cx(
+            surface({ radius: 'lg' }),
+            css({ display: 'flex', gap: '4', alignItems: 'flex-start', p: '4' })
+          )}
         >
           <span
             class={css({
@@ -73,7 +68,7 @@ import { links } from '@/data/site'
               fontSize: 'sm',
               fontWeight: 'semibold',
               color: 'fg.default',
-              fontFamily: 'var(--font-mono)',
+              fontFamily: 'mono',
             })}
           >
             {i + 1}
