@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "check": "astro check",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -22,9 +23,11 @@
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@pandacss/dev": "^1.11.4",
     "@park-ui/cli": "^1.0.1",
     "prettier": "^3.9.5",
-    "prettier-plugin-astro": "^0.13.0"
+    "prettier-plugin-astro": "^0.13.0",
+    "typescript": "^5.9.3"
   }
 }
