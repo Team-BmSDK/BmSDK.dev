@@ -3,8 +3,8 @@ import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://etkramer.github.io',
-  base: '/BmSDK.net/',
+  // Served from GitHub Pages on the custom domain bmsdk.dev (CNAME in public/).
+  site: 'https://bmsdk.dev',
   integrations: [react()],
   vite: {
     ssr: {
