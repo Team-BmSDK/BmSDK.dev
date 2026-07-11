@@ -15,7 +15,7 @@ export const links = {
     wiki: `${city}/wiki`,
     firstMod: `${city}/wiki/Creating-your-first-mod`,
     building: `${city}/wiki/Building-BmSDK`,
-    licence: `${city}/blob/master/LICENSE.md`,
+    license: `${city}/blob/master/LICENSE.md`,
   },
   knight: {
     repo: knight,

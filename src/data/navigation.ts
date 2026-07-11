@@ -38,7 +38,7 @@ export const footerColumns: FooterColumn[] = [
     links: [
       { label: 'Releases', href: links.city.releases },
       { label: 'GitHub', href: links.city.repo },
-      { label: 'Licence', href: links.city.licence },
+      { label: 'License', href: links.city.license },
     ],
   },
 ]
