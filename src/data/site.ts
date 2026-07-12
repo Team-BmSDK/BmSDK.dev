@@ -3,9 +3,9 @@ const knight = 'https://github.com/Team-BmSDK/BmSDK-AK'
 
 export const site = {
   name: 'BmSDK',
-  tagline: 'Script the Arkham games in C#',
+  tagline: 'Arkham modding SDK',
   description:
-    'BmSDK is a scripting platform for Batman: Arkham City and Arkham Knight. Extend the game with custom gameplay and logic using a full C# SDK.',
+    'BmSDK is a C#-based script hook/modding SDK for Batman: Arkham City and Arkham Knight. Extend the game with custom gameplay and logic using a full C# SDK.',
 }
 
 export const links = {
