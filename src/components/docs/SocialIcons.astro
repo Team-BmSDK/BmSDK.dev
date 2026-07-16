@@ -1,0 +1,23 @@
+---
+// Overrides Starlight's SocialIcons to reuse the site's own GitHub mark so both
+// headers match.
+import GithubIcon from '@/components/layout/GithubIcon.astro'
+import { site, links } from '@/data/site'
+---
+
+<a href={links.city.repo} aria-label={`${site.name} on GitHub`} class="gh-link">
+  <GithubIcon size={20} />
+</a>
+
+<style>
+  .gh-link {
+    display: flex;
+    align-items: center;
+    color: var(--sl-color-gray-3);
+    transition: color 0.15s;
+  }
+  .site-nav a:hover,
+  .gh-link:hover {
+    color: var(--sl-color-white);
+  }
+</style>

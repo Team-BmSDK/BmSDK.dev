@@ -1,0 +1,148 @@
+/* Skin Starlight to match the marketing site's GitHub Primer palette. */
+
+html {
+  scrollbar-gutter: stable;
+}
+
+:root {
+  --sl-font:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  --sl-font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --app-max: 89rem;
+  --app-gutter: max(0px, calc((100vw - var(--app-max)) / 2));
+  --sl-content-width: 45rem;
+  --sl-sidebar-width: 16rem;
+}
+
+/* Dark theme (site default) — GitHub dark tokens. */
+:root,
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #121d2f;
+  --sl-color-accent: #1f6feb;
+  --sl-color-accent-high: #58a6ff;
+
+  --sl-color-white: #e6edf3;
+  --sl-color-gray-1: #e6edf3;
+  --sl-color-gray-2: #c9d1d9;
+  --sl-color-gray-3: #8b949e;
+  --sl-color-gray-4: #6e7681;
+  --sl-color-gray-5: #30363d;
+  --sl-color-gray-6: #161b22;
+  --sl-color-black: #0d1117;
+
+  --sl-color-text: #e6edf3;
+  --sl-color-text-accent: #58a6ff;
+  --sl-color-bg: #0d1117;
+  --sl-color-bg-nav: #0d1117;
+  --sl-color-bg-sidebar: #0d1117;
+  --sl-color-bg-inline-code: rgba(110, 118, 129, 0.4);
+  --sl-color-hairline: #30363d;
+  --sl-color-hairline-light: #21262d;
+  --sl-color-hairline-shade: #21262d;
+}
+
+header.header {
+  background-color: color-mix(in srgb, var(--sl-color-bg-nav) 80%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom-color: transparent;
+}
+#starlight__sidebar.sidebar-pane {
+  border-inline-end: none;
+}
+.right-sidebar {
+  border-inline-start: none;
+}
+.content-panel + .content-panel {
+  border-top: none;
+}
+
+#starlight__sidebar a[aria-current='page'],
+#starlight__sidebar a[aria-current='page']:hover,
+#starlight__sidebar a[aria-current='page']:focus {
+  color: var(--sl-color-text-accent);
+  background-color: var(--sl-color-accent-low);
+}
+
+/* Contain the layout in the centered frame and give each column even gutters. */
+@media (min-width: 72rem) {
+  header.header {
+    padding-inline-start: max(var(--sl-nav-pad-x), var(--app-gutter));
+    padding-inline-end: max(var(--sl-nav-pad-x), var(--app-gutter));
+  }
+
+  /* Even side columns so the search bar sits centered in the header. */
+  header.header > div.header {
+    grid-template-columns: 1fr auto 1fr;
+  }
+  header.header > div.header > :nth-child(2) {
+    width: 24rem;
+  }
+  header.header > div.header > :nth-child(3) {
+    justify-self: end;
+  }
+  header.header site-search button[data-open-modal] {
+    width: 100%;
+    max-width: none;
+  }
+
+  #starlight__sidebar.sidebar-pane {
+    inset-inline-start: var(--app-gutter);
+  }
+
+  /* Line the logo up with the sidebar nav items instead of the frame edge. */
+  header.header .site-title {
+    margin-inline-start: calc(var(--sl-sidebar-pad-x) + 0.5rem);
+  }
+
+  /* Match the content/right-sidebar top offset so all three columns start level. */
+  #starlight__sidebar .sidebar-content {
+    padding-top: 2.5rem;
+  }
+
+  .main-frame {
+    padding-inline-start: calc(var(--sl-content-inline-start) + var(--app-gutter));
+    padding-inline-end: var(--app-gutter);
+    /* Extra breathing room between the navbar and the content. */
+    padding-top: calc(var(--sl-nav-height) + 2.5rem);
+  }
+
+  [data-has-sidebar][data-has-toc] .main-pane {
+    width: calc(100% - var(--sl-sidebar-width));
+    --sl-content-margin-inline: auto;
+  }
+  .right-sidebar-container {
+    width: var(--sl-sidebar-width);
+  }
+  .right-sidebar {
+    padding-top: calc(var(--sl-nav-height) + 2.5rem);
+  }
+}
+
+/* Light theme — GitHub light tokens. */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #ddf4ff;
+  --sl-color-accent: #0969da;
+  --sl-color-accent-high: #0757ba;
+
+  --sl-color-white: #1f2328;
+  --sl-color-gray-1: #24292f;
+  --sl-color-gray-2: #59636e;
+  --sl-color-gray-3: #818b98;
+  --sl-color-gray-4: #d1d9e0;
+  --sl-color-gray-5: #eaeef2;
+  --sl-color-gray-6: #f6f8fa;
+  --sl-color-gray-7: #ffffff;
+  --sl-color-black: #ffffff;
+
+  --sl-color-text: #1f2328;
+  --sl-color-text-accent: #0969da;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-bg-inline-code: rgba(175, 184, 193, 0.2);
+  --sl-color-hairline: #d1d9e0;
+  --sl-color-hairline-light: #d8dee4;
+  --sl-color-hairline-shade: #d8dee4;
+}

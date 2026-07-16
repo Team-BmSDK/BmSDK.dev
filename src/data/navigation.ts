@@ -8,8 +8,7 @@ export interface NavLink {
 export const headerNav: NavLink[] = [
   { label: 'Arkham City', href: links.city.repo },
   { label: 'Arkham Knight', href: links.knight.repo },
-  { label: 'Wiki', href: links.city.wiki },
-  { label: 'Releases', href: links.city.releases },
+  { label: 'Docs', href: links.docs.home },
 ]
 
 export interface FooterColumn {
@@ -28,9 +27,9 @@ export const footerColumns: FooterColumn[] = [
   {
     title: 'Docs',
     links: [
-      { label: 'Wiki', href: links.city.wiki },
-      { label: 'Your first mod', href: links.city.firstMod },
-      { label: 'Building BmSDK', href: links.city.building },
+      { label: 'Documentation', href: links.docs.home },
+      { label: 'Your first mod', href: links.docs.firstMod },
+      { label: 'Building BmSDK', href: links.docs.building },
     ],
   },
   {
