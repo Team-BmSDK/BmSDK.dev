@@ -19,7 +19,6 @@ export default defineConfig({
         SocialIcons: './src/components/docs/SocialIcons.astro',
         SiteTitle: './src/components/docs/SiteTitle.astro',
       },
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Team-BmSDK/BmSDK-AC' }],
       sidebar: [
         {
           label: 'Getting Started',
@@ -28,7 +27,7 @@ export default defineConfig({
         {
           label: 'Guides',
           items: [
-            { label: 'Creating your first mod', slug: 'docs/getting-started/first-mod' },
+            { label: 'Creating your first mod', slug: 'docs/guides/first-mod' },
             { label: 'Redirecting functions', slug: 'docs/guides/redirecting-functions' },
             { label: 'Script components', slug: 'docs/guides/script-components' },
           ],
